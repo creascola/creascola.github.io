@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Discord Webhook Spammer</title>
+</head>
+<body>
+    <label for="webhookUrl">Webhook URL:</label><br>
+    <input type="text" id="webhookUrl"><br><br>
+
+    <label for="spamCount">Number of times to spam:</label><br>
+    <input type="number" id="spamCount"><br><br>
+
+    <button onclick="startSpam()">Start Spamming</button>
+
+    <script>
+        function startSpam() {
+            var webhookUrl = document.getElementById("webhookUrl").value;
+            var spamCount = document.getElementById("spamCount").value;
+
+            for (var i = 0; i < spamCount; i++) {
+                var request = new XMLHttpRequest();
+                request.open("POST", webhookUrl);
+
+                request.setRequestHeader('Content-type', 'application/json');
+
+                var params = {
+                    username: "Spammer",
+                    content: "@everyone"
+                }
+
+                request.send(JSON.stringify(params));
+            }
+        }
+    </script>
+</body>
+</html>
